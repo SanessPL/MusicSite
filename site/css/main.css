@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
+:root{
+    --sm-font:  'Poppins', sans-serif;
+    --bs-font-sans-serif: 'Poppins', sans-serif; 
+}
+
+.navbar{
+    box-shadow: 0 3px 9px 3px rgba(0,0,0,0.1);
+}
+.navbar-brand a{
+    font-family: 'Poppins';
+    font-weight: 200;
+}
