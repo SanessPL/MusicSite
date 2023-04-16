@@ -65,6 +65,40 @@ aria-label="Toggle navigation"
 </div>
 </nav>
 
+<header id="header" class="vh-100" style="padding-top:400px; 
+                                          background-image:url(../../Images/siteimages/quebonafide.avif);background-attachment:
+                                          fixed;background-position: center;background-repeat: no-repeat; ">
+   <div class="container">
+      <div class="">
+         <h1 class="text-capitalize text-white text-center">Najlepsze albumy w każdej<br> wersji którą lubisz.</h1>
+      </div>
+   </div>
+</header>
+<section id="Bestseller" class="py-5">
+   <div class="container">
+      <div class="title text-center">
+         <h2 class="position-relative d-inline-block" >Bestsellery</h2>
+      </div>
+      <div class="collection-list mt-xl-4">
+               <?php
+               include('.//connect.php');
+               $zap="SELECT ProductPhoto,ProductName, ProductPrize, ProductType, ProductAuthor FROM products WHERE bestseller = 'yes'";
+               $query = mysqli_query($conn,$zap);
+               while($row = mysqli_fetch_row($query)){
+                  echo '<div class="text-center">';
+                  echo '<div class="collection-img" style="border:1px solid black; width:300px; padding-top:20px; float:left; margin:50px; margin-left:75px;" col-md-12>';
+                  echo'<img src="../../Images/'.$row[0].'" alt="bestsellers" class="" style="height:250px; width:auto; border:1px solid black;';
+                  echo '</div>';
+                  echo '<p class=""><br>'.$row[4].'</p>';
+                  echo '<p class="">'.$row[1].'</p>';
+                  echo '<p class="">'.$row[3].'</p>';
+                  echo '<span class="">'.$row[2].' zł </span>';
+                  echo '</div>';
+               }
+               ?>
+      </div>                                          
+   </div>
+</section>
 
 
 
