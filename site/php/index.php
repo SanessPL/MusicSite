@@ -79,27 +79,203 @@ aria-label="Toggle navigation"
       <div class="title text-center">
          <h2 class="position-relative d-inline-block" >Bestsellery</h2>
       </div>
-      <div class="collection-list mt-xl-4">
+      <div class="collection-list mt-4 ">
+         <div class="col-md-6 col-lg-4  p-2 ">
+         <div class="text-center" >
                <?php
                include('.//connect.php');
                $zap="SELECT ProductPhoto,ProductName, ProductPrize, ProductType, ProductAuthor FROM products WHERE bestseller = 'yes'";
                $query = mysqli_query($conn,$zap);
                while($row = mysqli_fetch_row($query)){
-                  echo '<div class="text-center">';
-                  echo '<div class="collection-img" style="border:1px solid black; width:300px; padding-top:20px; float:left; margin:50px; margin-left:75px;" col-md-12>';
-                  echo'<img src="../../Images/'.$row[0].'" alt="bestsellers" class="" style="height:250px; width:auto; border:1px solid black;';
+                  echo '<div class="collection-img" >';
+                  echo'<img src="../../Images/'.$row[0].'" alt="bestsellers" class="w-50 h-auto" style="height:250px; width:auto; border:1px solid black;';
                   echo '</div>';
-                  echo '<p class=""><br>'.$row[4].'</p>';
-                  echo '<p class="">'.$row[1].'</p>';
-                  echo '<p class="">'.$row[3].'</p>';
-                  echo '<span class="">'.$row[2].' zł </span>';
+                  echo '<div>';
+                  echo '<p class=""><br><br><b>'.$row[4].'</b></p>';
+                  echo '<span class="text-capitalize my-1">'.$row[1].'</span><br>';
+                  echo '<span class="">'.$row[3].'</span><br>';
+                  echo '<span class="">'.$row[2].' zł </span><br><br>';
+                  echo '<button type="button" class="btn btn-danger btn-lg">Do Koszyka</button>';
                   echo '</div>';
                }
                ?>
+               </div>
+            </div>
       </div>                                          
    </div>
 </section>
 
+<section  class="vh-100" style="          padding-top:400px;
+                                          background-image:url(../../Images/siteimages/problem1.jpg);background-attachment:
+                                          fixed;background-position: center;background-repeat: no-repeat; ">
+   <div class="container">
+      <div class="">
+         <h1 class="text-capitalize text-white text-center">Rzetelne artykuły o twoich<br> ulubionych artystach.</h1>
+      </div>
+   </div>
+</section>
+<section id="blogs" class="py-5">
+   <div class="container">
+      <div class="title text-center py-5">
+         <h2 class="position-relative d-inline-block">
+            Blog
+         </h2>
+      </div>
+
+      <div class="row">
+         <div class="card border-0 col-md-6 col-lg-4 bg-transparent text-center" >
+            <img src="../../Images/siteimages/janblog.jpg" alt="Jan Rapowanie"  class="blog">
+            <div class="card body px-0 border-0">
+               <h4 class="card-title">
+               <br>Lorem Ipsum is simply dummy text
+               </h4>
+               <p class="card-text mt-3 text-muted" >
+               Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+               when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+               It has survived not only five centuries, but also the leap into electronic typesetting, 
+               remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+               sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
+               like Aldus PageMaker including versions of Lorem Ipsum.
+               </p>
+               <p class="card-text">
+                  <small class="text-muted">
+                     <span class="">Autor:</span> Karol Poplewski
+                  </small>
+               </p>
+               <a href="#" class="btn btn-dark">Czytaj więcej</a><br><br>
+            </div>
+         </div>
+         <div class="card border-0 col-md-6 col-lg-4 bg-transparent text-center" >
+            <img src="../../Images/siteimages/problemblog.jpeg" alt="PRO8L3M" class="blog" style="height:234px; object-fit: cover; object-position: 100% 20%;">
+            <div class="card body px-0 border-0">
+               <h4 class="card-title">
+               <br>Lorem Ipsum is simply dummy text
+               </h4>
+               <p class="card-text mt-3 text-muted" >
+               Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+               when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+               It has survived not only five centuries, but also the leap into electronic typesetting, 
+               remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+               sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
+               like Aldus PageMaker including versions of Lorem Ipsum.
+               </p>
+               <p class="card-text">
+                  <small class="text-muted">
+                     <span class="">Autor:</span> Karol Poplewski
+                  </small>
+               </p>
+               <a href="#" class="btn btn-dark">Czytaj więcej</a><br><br>
+            </div>
+         </div>
+         <div class="card border-0 col-md-6 col-lg-4 bg-transparent text-center" >
+            <img src="../../Images/siteimages/que.jpg" alt="Quebonafide"  class="blog" style="height:234px; object-fit: cover; object-position: 100% 20%;">
+            <div class="card body px-0 border-0">
+               <h4 class="card-title">
+               <br>Lorem Ipsum is simply dummy text
+               </h4>
+               <p class="card-text mt-3 text-muted" >
+               Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+               when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+               It has survived not only five centuries, but also the leap into electronic typesetting, 
+               remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+               sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
+               like Aldus PageMaker including versions of Lorem Ipsum.
+               </p>
+               <p class="card-text">
+                  <small class="text-muted">
+                     <span class="">Autor:</span> Karol Poplewski
+                  </small>
+               </p>
+               <a href="#" class="btn btn-dark">Czytaj więcej</a><br><br>
+            </div>
+         </div>
+         <div class="card border-0 col-md-6 col-lg-4 bg-transparent text-center" >
+            <img src="../../Images/siteimages/drake.jpg" alt="Drake"  class="blog" style="height:234px; object-fit: cover; object-position: 100% 20%;">
+            <div class="card body px-0 border-0">
+               <h4 class="card-title">
+               <br>Lorem Ipsum is simply dummy text
+               </h4>
+               <p class="card-text mt-3 text-muted" >
+               Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+               when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+               It has survived not only five centuries, but also the leap into electronic typesetting, 
+               remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+               sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
+               like Aldus PageMaker including versions of Lorem Ipsum.
+               </p>
+               <p class="card-text">
+                  <small class="text-muted">
+                     <span class="">Autor:</span> Karol Poplewski
+                  </small>
+               </p>
+               <a href="#" class="btn btn-dark">Czytaj więcej</a><br><br>
+            </div>
+         </div>
+
+         <div class="card border-0 col-md-6 col-lg-4 bg-transparent text-center" >
+            <img src="../../Images/siteimages/kacperczyk.jpg" alt="Bracia Kacperczyk"  class="blog" style="height:234px; object-fit: cover; object-position: 100% 20%;">
+            <div class="card body px-0 border-0">
+               <h4 class="card-title">
+               <br>Lorem Ipsum is simply dummy text
+               </h4>
+               <p class="card-text mt-3 text-muted" >
+               Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+               when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+               It has survived not only five centuries, but also the leap into electronic typesetting, 
+               remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+               sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
+               like Aldus PageMaker including versions of Lorem Ipsum.
+               </p>
+               <p class="card-text">
+                  <small class="text-muted">
+                     <span class="">Autor:</span> Karol Poplewski
+                  </small>
+               </p>
+               <a href="#" class="btn btn-dark">Czytaj więcej</a><br><br>
+            </div>
+         </div>
+
+         <div class="card border-0 col-md-6 col-lg-4 bg-transparent text-center" >
+            <img src="../../Images/siteimages/rapstacja.jpg" alt="Rap Stacja"  class="blog" style="height:234px; object-fit: cover; object-position: 100% 20%;">
+            <div class="card body px-0 border-0">
+               <h4 class="card-title">
+               <br>Lorem Ipsum is simply dummy text
+               </h4>
+               <p class="card-text mt-3 text-muted" >
+               Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+               when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+               It has survived not only five centuries, but also the leap into electronic typesetting, 
+               remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+               sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
+               like Aldus PageMaker including versions of Lorem Ipsum.
+               </p>
+               <p class="card-text">
+                  <small class="text-muted">
+                     <span class="">Autor:</span> Karol Poplewski
+                  </small>
+               </p>
+               <a href="#" class="btn btn-dark">Czytaj więcej</a><br><br>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+<section  class="vh-100" style="          padding-top:400px;
+                                          background-image:url(../../Images/siteimages/zobaczsklep1.jpg);background-attachment:
+                                          fixed;background-position: center;background-repeat: no-repeat; ">
+   <div class="container">
+      <div class="text-center">
+         <h1 class="text-capitalize text-white text-center">odwiedź nasz sklep<br>aby kupić muzykę<br> ulubionego artysty!</h1><br>
+      </div>
+   </div>
+</section>
 
 
     <script src="../js/jquery-3.6.4.js"></script>
