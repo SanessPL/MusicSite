@@ -5,7 +5,7 @@
 -CSS
 -SQL
 -Font awesome
-
+-JQuery
 
 #NazwaStrony
 muzycznie.pl
