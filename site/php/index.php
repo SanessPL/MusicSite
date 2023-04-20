@@ -88,7 +88,7 @@ aria-label="Toggle navigation"
      </a>
     </li>
     <li class="nav-item active text-center fs-3 p-3">
-     <a href="#" class="nav-link">
+     <a href="../php/login.php" class="nav-link">
         Zaloguj
      </a>
     </li>
@@ -111,6 +111,7 @@ aria-label="Toggle navigation"
       </div>
    </div>
 </header>
+
 <section id="Bestseller" class="py-5">
    <div class="container">
       <div class="title text-center">
