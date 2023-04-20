@@ -73,17 +73,17 @@ aria-label="Toggle navigation"
      </a>
     </li>
     <li class="nav-item active text-center fs-3 p-3">
-     <a href="#" class="nav-link">
+     <a href="../php/shop.php" class="nav-link">
         Sklep
      </a>
     </li>
     <li class="nav-item active text-center fs-3 p-3">
-     <a href="#" class="nav-link">
+     <a href="../php/aboutus.php" class="nav-link">
         O nas
      </a>
     </li>
     <li class="nav-item active text-center fs-3 p-3">
-     <a href="#" class="nav-link">
+     <a href="../php/contact.php" class="nav-link">
         Kontakt
      </a>
     </li>
@@ -93,7 +93,7 @@ aria-label="Toggle navigation"
      </a>
     </li>
     <li class="nav-item active text-center fs-3 p-3">
-     <a href="#" class="nav-link">
+     <a href="../php/cart.php" class="nav-link">
         Koszyk
      </a>
     </li>
