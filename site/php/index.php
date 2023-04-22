@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
@@ -92,6 +93,7 @@ aria-label="Toggle navigation"
         Zaloguj
      </a>
     </li>
+
     <li class="nav-item active text-center fs-3 p-3">
      <a href="../php/cart.php" class="nav-link">
         Koszyk
