@@ -1,12 +1,3 @@
-<?php 
-session_start(); 
-if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
-   // Użytkownik jest zalogowany
-   // Można wczytywać inną stronę po zalogowaniu
-   header("Location: aboutuslogged.php"); // Przykładowe przekierowanie na inną stronę po zalogowaniu
-   exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
@@ -60,12 +51,12 @@ aria-label="Toggle navigation"
      </a>
     </li>
     <li class="nav-item active text-center fs-3 p-3">
-     <a href="../php/login.php" class="nav-link">
-        Zaloguj
+     <a href="../php/logout.php" class="nav-link">
+        Wyloguj
      </a>
     </li>
     <li class="nav-item active text-center fs-3 p-3">
-     <a href="../php/shopcartnot.php" class="nav-link">
+     <a href="../php/shopcart.php" class="nav-link">
         Koszyk
      </a>
     </li>

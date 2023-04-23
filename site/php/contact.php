@@ -1,3 +1,12 @@
+<?php 
+session_start(); 
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
+   // Użytkownik jest zalogowany
+   // Można wczytywać inną stronę po zalogowaniu
+   header("Location: contactlogged.php"); // Przykładowe przekierowanie na inną stronę po zalogowaniu
+   exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
@@ -163,7 +172,7 @@ aria-label="Toggle navigation"
      </a>
     </li>
     <li class="nav-item active text-center fs-3 p-3">
-     <a href="../php/cart.php" class="nav-link">
+     <a href="../php/shopcartnot.php" class="nav-link">
         Koszyk
      </a>
     </li>

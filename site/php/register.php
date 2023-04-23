@@ -1,11 +1,24 @@
+<?php 
+session_start(); 
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] != true){
+   // Użytkownik jest zalogowany
+   // Można wczytywać inną stronę po zalogowaniu
+   header("Location: index.php"); // Przykładowe przekierowanie na inną stronę po zalogowaniu
+   exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
-    <title>Register</title>
+    <link rel="icon" type="image/x-icon" href="../../Images/logo/fav.png">
+    <link rel="stylesheet" href = "../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Muzycznie.pl</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 *{
@@ -15,13 +28,7 @@
     font-family: 'Poppins',sans-serif;
 }
 body{
-    background: #e4e9f7;
-}
-.container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 90vh;
+    background: white;
 }
 .box{
     background: #fdfdfd;
@@ -60,7 +67,7 @@ body{
 }
 .btn{
     height: 35px;
-    background: rgba(76,68,182,0.808);
+    background: black;
     border: 0;
     border-radius: 5px;
     color: #fff;
@@ -84,44 +91,102 @@ body{
     </style>
 </head>
 <body>
-      <div class="container">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<div class="container">
+<a href="index.php" class="navbar-brand mb-0 h1 fs-1 text-uppercase">
+    Muzycznie.pl
+</a>
+<button 
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#navbarNav"
+class="navbar-toggler"
+aria-controls="navbarNav"
+aria-expanded="false"
+aria-label="Toggle navigation"
+>
+   <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-center " id="navbarNav"> 
+    <ul class="navbar-nav">
+    <li class="nav-item active text-center fs-3 p-3 fw-light">
+     <a href="../php/index.php" class="nav-link ">
+        Strona Główna
+     </a>
+    </li>
+    <li class="nav-item active text-center fs-3 p-3">
+     <a href="../php/shop.php" class="nav-link">
+        Sklep
+     </a>
+    </li>
+    <li class="nav-item active text-center fs-3 p-3">
+     <a href="../php/aboutus.php" class="nav-link">
+        O nas
+     </a>
+    </li>
+    <li class="nav-item active text-center fs-3 p-3">
+     <a href="../php/contact.php" class="nav-link">
+        Kontakt
+     </a>
+    </li>
+    <li class="nav-item active text-center fs-3 p-3">
+     <a href="../php/login.php" class="nav-link active">
+        Zaloguj
+     </a>
+    </li>
+    <li class="nav-item active text-center fs-3 p-3">
+     <a href="../php/shopcartnot.php" class="nav-link">
+        Koszyk
+     </a>
+    </li>
+    </ul>
+</div>
+</div>
+</nav>
+
+
+
+
+      <div class="container" style=
+        " display: flex;
+           align-items: center;
+         justify-content: center;
+         min-height: 90vh;">
         <div class="box form-box">
 
         <?php 
          
-         include("config.php");
+         include("connect.php");
          if(isset($_POST['submit'])){
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-
-         //verifying the unique email
-
-         $verify_query = mysqli_query($con,"SELECT Email FROM users WHERE Email='$email'");
-
-         if(mysqli_num_rows($verify_query) !=0 ){
-            echo "<div class='message'>
-                      <p>This email is used, Try another One Please!</p>
-                  </div> <br>";
-            echo "<a href='javascript:self.history.back()'><button class='btn'>Go Back</button>";
-         }
-         else{
-
-            mysqli_query($con,"INSERT INTO users(Username,Email,Password) VALUES('$username','$email','$password')") or die("Erroe Occured");
-
-            echo "<div class='message'>
-                      <p>Registration successfully!</p>
-                  </div> <br>";
-            echo "<a href='index.php'><button class='btn'>Login Now</button>";
+             $username = $_POST['username'];
+             $email = $_POST['email'];
+             $password = $_POST['password'];
          
 
-         }
+             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+         
+             $verify_query = mysqli_query($con,"SELECT Email FROM users WHERE Email='$email'");
+         
+             if(mysqli_num_rows($verify_query) !=0 ){
+                 echo "<div class='message'>
+                           <p>Istnieje konto z podanym emailem!</p>
+                       </div> <br>";
+                 echo "<a href='javascript:self.history.back()'><button class='btn'>Powrót</button>";
+             }
+             else{
+         
+                 mysqli_query($con,"INSERT INTO users(Username,Email,Password) VALUES('$username','$email','$hashed_password')") or die("Error Occurred");
+         
+                 echo "<div class='message'>
+                           <p>Rejestracja przebiegła pomyślnie!</p>
+                       </div> <br>";
+                 echo "<a href='login.php'><button class='btn'>Zaloguj się</button>";
+             }
          }else{
-         
-        ?>
+         ?>
 
-            <header>Sign Up</header>
+            <header>Zarejestruj się!</header>
             <form action="" method="post">
                 <div class="field input">
                     <label for="username">Username</label>
@@ -139,10 +204,10 @@ body{
 
                 <div class="field">
                     
-                    <input type="submit" class="btn" name="submit" value="Register" required>
+                    <input type="submit" class="btn" name="submit" value="Zarejestruj się" required>
                 </div>
                 <div class="links">
-                    Already a member? <a href="login.php">Sign In</a>
+                    Masz już konto? <a href="login.php">Zaloguj się.</a>
                 </div>
             </form>
         </div>

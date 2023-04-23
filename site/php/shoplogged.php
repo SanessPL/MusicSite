@@ -1,9 +1,9 @@
 <?php 
 session_start(); 
-if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] != true){
    // Użytkownik jest zalogowany
    // Można wczytywać inną stronę po zalogowaniu
-   header("Location: shoplogged.php"); // Przykładowe przekierowanie na inną stronę po zalogowaniu
+   header("Location: shop.php"); // Przykładowe przekierowanie na inną stronę po zalogowaniu
    exit;
 }
 ?>
@@ -97,12 +97,12 @@ aria-label="Toggle navigation"
      </a>
     </li>
     <li class="nav-item active text-center fs-3 p-3">
-     <a href="../php/login.php" class="nav-link">
-        Zaloguj
+     <a href="../php/logout.php" class="nav-link">
+        Wyloguj
      </a>
     </li>
     <li class="nav-item active text-center fs-3 p-3">
-     <a href="../php/shopcartnot.php" class="nav-link">
+     <a href="../php/shopcart.php" class="nav-link">
         Koszyk
      </a>
     </li>
@@ -120,7 +120,7 @@ aria-label="Toggle navigation"
       </div>
    </div>
 </header>
-<section id="Bestseller" class="py-5">
+<section id="Shop" class="py-5">
    <div class="container">
       <div class="title text-center">
          <h2 class="position-relative d-inline-block">Nasz sklep<br></h2>
@@ -129,7 +129,7 @@ aria-label="Toggle navigation"
          <div class="row">
             <?php
             include('connect.php');
-            $zap="SELECT ProductPhoto,ProductName, ProductPrize, ProductType, ProductAuthor, ProductDemo FROM products";
+            $zap="SELECT ProductPhoto,ProductName, ProductPrize, ProductType, ProductAuthor, ProductDemo, ProductID FROM products";
             $query = mysqli_query($con,$zap);
             while($row = mysqli_fetch_row($query)){
                echo '<div class="col-md-6 col-lg-4 p-2 text-center">';
@@ -141,7 +141,7 @@ aria-label="Toggle navigation"
                echo '<span class="text-capitalize my-1">'.$row[1].'</span><br>';
                echo '<span class="">'.$row[3].'</span><br>';
                echo '<span class="">'.$row[2].' zł </span>';
-               echo '<br><button class="btn btn-danger mt-2">Do Koszyka</button>'; 
+               echo '<br><button class="btn btn-danger mt-2 add-to-cart-btn" data-product-id="'.$row[6].'">Do Koszyka</button>'; 
                echo '</div>';
                echo '<div class="music-player mt-3">';
                echo '<audio class="audio-player" src="../../Music/'.$row[5].'" preload="metadata"></audio>';
@@ -257,7 +257,25 @@ aria-label="Toggle navigation"
          });
       });
 
-      
+      $(document).ready(function(){
+   $('.add-to-cart-btn').on('click', function(){
+        var productId = $(this).data('product-id'); 
+        $.ajax({
+            url: 'add_to_cart.php', 
+            method: 'post',
+            data: {productId: productId}, 
+            success: function(response){
+                if(response == 'success'){
+                    alert('Produkt został dodany do koszyka!');
+                } else {
+                    alert('Wystąpił błąd podczas dodawania do koszyka. Spróbuj ponownie.');
+                }
+            }
+        });
+    });
+});
+
+
    </script>
 </body>
 </html>
