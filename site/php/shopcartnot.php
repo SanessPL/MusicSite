@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href = "../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
-    <title>Document</title>
+    <link rel="stylesheet" href = "../../bootstrap-5.0.2-dist/css/bootstrap.min.css">\
+    <link rel="icon" type="image/x-icon" href="../../Images/logo/favicon.png">
+
+    <title>Muzycznie</title>
     <script>
    function updateCartItem(product_id, quantity) {
       $.ajax({
@@ -80,45 +82,10 @@
       </div>
    </div>
 </nav>
-<div class="container mt-5">
-      <h2><br><br><br>Koszyk</h2>
-      <table class="table mt-3">
-         <thead>
-            <tr>
-               <th scope="col">Zdjęcie</th>
-               <th scope="col">Nazwa</th>
-               <th scope="col">Typ</th>
-               <th scope="col">Cena</th>
-               <th scope="col">Ilość</th>
-               <th scope="col">Akcje</th>
-            </tr>
-         </thead>
-         <tbody>
-            <?php
-            session_start();
-            if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
-               $total_price = 0;
-               foreach($_SESSION['cart'] as $product){
-                  echo '<tr>';
-                  echo '<td><img src="../../Images/'.$product['ProductPhoto'].'" alt="'.$product['ProductName'].'" style="height:50px; width:auto;"></td>';
-                  echo '<td>'.$product['ProductName'].'</td>';
-                  echo '<td>'.$product['ProductType'].'</td>';
-                  echo '<td>'.$product['ProductPrize'].' zł</td>';
-                  echo '<td><input type="number" min="1" value="'.(isset($product['quantity']) ? $product['quantity'] : 1).'" onchange="updateCartItem('.$product['ProductID'].', this.value)" name="quantity"></td>';
-                  echo '<td><button class="btn btn-danger" onclick="removeCartItem('.$product['ProductID'].')">Usuń</button></td>';
-                  echo '</tr>';
-                  $total_price += $product['ProductPrize'] * (isset($product['quantity']) ? $product['quantity'] : 1);
-                }
-               echo '<tr><td colspan="4" class="text-right">Łączna cena: '.$total_price.' zł</td><td></td><td></td></tr>';
-            } else {
-               echo '<tr><td colspan="6">Koszyk jest pusty.</td></tr>';
-            }
-            ?>
-         </tbody>
-      </table>
-      <a href="shop.php" class="btn btn-dark">Powrót do sklepu</a>
-      <a href="../php/clear_cart.php" class="btn btn-dark">Wyczyść koszyk</a>
-   </div>
+<div class="container">
+      <div class="title text-center" style="padding-top:200px;">
+         <h2 class="position-relative d-inline-block">Aby mieć dostęp do swojego koszyka<br><a href="login.php">Zaloguj się.</a></h2>
+      </div>
 <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

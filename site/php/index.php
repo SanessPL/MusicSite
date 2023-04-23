@@ -14,7 +14,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muzycznie</title>
-    <link rel="icon" type="image/x-icon" href="../../Images/logo/fav.png">
+    <link rel="icon" type="image/x-icon" href="../../Images/logo/favicon.png">
     <link rel="stylesheet" href = "../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

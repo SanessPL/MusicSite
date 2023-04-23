@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href = "../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="../../Images/logo/favicon.png">
+
+    <title>Muzycznie</title>
     <script>
    function updateCartItem(product_id, quantity) {
       $.ajax({
@@ -95,11 +97,13 @@
             </tr>
          </thead>
          <tbody>
-            <?php
-            session_start();
-            if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])){
+         <?php
+         session_start();
+         if(isset($_COOKIE['cart_data'])){ // Sprawdzenie, czy istnieje plik cookie z danymi koszyka
+            $cartData = json_decode($_COOKIE['cart_data'], true); // Odczytanie danych koszyka z pliku cookie i zdekodowanie ich do tablicy PHP
+            if(is_array($cartData)){
                $total_price = 0;
-               foreach($_SESSION['cart'] as $product){
+               foreach($cartData as $product){
                   echo '<tr>';
                   echo '<td><img src="../../Images/'.$product['ProductPhoto'].'" alt="'.$product['ProductName'].'" style="height:50px; width:auto;"></td>';
                   echo '<td>'.$product['ProductName'].'</td>';
@@ -109,12 +113,15 @@
                   echo '<td><button class="btn btn-danger" onclick="removeCartItem('.$product['ProductID'].')">Usuń</button></td>';
                   echo '</tr>';
                   $total_price += $product['ProductPrize'] * (isset($product['quantity']) ? $product['quantity'] : 1);
-                }
+               }
                echo '<tr><td colspan="4" class="text-right">Łączna cena: '.$total_price.' zł</td><td></td><td></td></tr>';
             } else {
                echo '<tr><td colspan="6">Koszyk jest pusty.</td></tr>';
             }
-            ?>
+         } else {
+            echo '<tr><td colspan="6">Koszyk jest pusty.</td></tr>';
+         }
+         ?>
          </tbody>
       </table>
       <a href="shop.php" class="btn btn-dark">Powrót do sklepu</a>
