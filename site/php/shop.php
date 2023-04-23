@@ -142,7 +142,7 @@ aria-label="Toggle navigation"
                echo '<span class="text-capitalize my-1">'.$row[1].'</span><br>';
                echo '<span class="">'.$row[3].'</span><br>';
                echo '<span class="">'.$row[2].' zł </span>';
-               echo '<br><button class="btn btn-danger mt-2">Do Koszyka</button>'; 
+               echo '<br><a href="../php/shopcartnot.php" class="btn btn-danger mt-2">Do Koszyka</a>'; 
                echo '</div>';
                echo '<div class="music-player mt-3">';
                echo '<audio class="audio-player" src="../../Music/'.$row[5].'" preload="metadata"></audio>';
