@@ -83,8 +83,24 @@
       </div>
    </div>
 </nav>
-<div class="container mt-5">
-      <h2><br><br><br>Koszyk</h2>
+<div class="container mt-5"><br><br><br>
+     <h2>Historia zamówień</h2>
+     <?php 
+      session_start();
+      $UserID = $_SESSION['userID'];
+      require_once("connect.php");
+      $zap="SELECT OrderID,Products,Payment,OrderDate FROM orders where UserID = $UserID";  
+      $wyk = mysqli_query($con, $zap);
+
+      while($row = mysqli_fetch_array($wyk)){
+        $OrderID = $row['OrderID'];
+        $Products = $row['Products'];
+        $Payment = $row['Payment'];
+        $OrderDate = $row['OrderDate'];
+      
+     ?>
+    <br><br>
+    <h4>Zamówienie nr: <?php echo $OrderID;?> z dnia: <?php echo $OrderDate;?></h4>   
       <table class="table mt-3">
          <thead>
             <tr>
@@ -93,66 +109,28 @@
                <th scope="col">Typ</th>
                <th scope="col">Cena</th>
                <th scope="col">Ilość</th>
-               <th scope="col">Akcje</th>
             </tr>
          </thead>
          <tbody>
          <?php
-         session_start();
-         if(isset($_COOKIE['cart_data'])){ // Sprawdzenie, czy istnieje plik cookie z danymi koszyka
-            $cartData = json_decode($_COOKIE['cart_data'], true); // Odczytanie danych koszyka z pliku cookie i zdekodowanie ich do tablicy PHP
-            if(is_array($cartData)){
+                $ProductsData = json_decode($Products, true);
+
                $total_price = 0;
-               foreach($cartData as $product){
+               foreach($ProductsData as $product){
                   echo '<tr>';
                   echo '<td><img src="../../Images/'.$product['ProductPhoto'].'" alt="'.$product['ProductName'].'" style="height:50px; width:auto;"></td>';
                   echo '<td>'.$product['ProductName'].'</td>';
                   echo '<td>'.$product['ProductType'].'</td>';
                   echo '<td>'.$product['ProductPrize'].' zł</td>';
                   echo '<td><input type="number" min="1" value="'.(isset($product['quantity']) ? $product['quantity'] : 1).'" onchange="updateCartItem('.$product['ProductID'].', this.value)" name="quantity"></td>';
-                  echo '<td><button class="btn btn-danger" onclick="removeCartItem('.$product['ProductID'].')">Usuń</button></td>';
                   echo '</tr>';
                   $total_price += $product['ProductPrize'] * (isset($product['quantity']) ? $product['quantity'] : 1);
                }
-               echo '<tr><td colspan="4" class="text-right">Łączna cena: '.$total_price.' zł</td><td></td><td></td></tr>';
-            } else {
-               echo '<tr><td colspan="6">Koszyk jest pusty.</td></tr>';
-            }
-         } else {
-            echo '<tr><td colspan="6">Koszyk jest pusty.</td></tr>';
-         }
+               echo "<tr><td colspan='4' class='text-right'>Łączna cena: $total_price zł &nbsp;&nbsp; &nbsp;   Metoda płatnosći: $Payment </td><td></td></tr>";
          ?>
          </tbody>
-      </table>
+      </table><?php }?>
       <a href="shop.php" class="btn btn-dark">Powrót do sklepu</a>
-      <a href="../php/clear_cart.php" class="btn btn-dark">Wyczyść koszyk</a>
-      <br><br><br>
-      <h2><br>Sposoby płatności:</h2>
-      <form action="place_order.php" method="post">
-      <div class="form-check mt-3">
-         <input class="form-check-input" type="radio" name="payment_method" value="karta" checked>
-         <label class="form-check-label">
-            Karta kredytowa/debetowa
-         </label>
-      </div>
-      <div class="form-check">
-         <input class="form-check-input" type="radio" name="payment_method" value="blik">
-         <label class="form-check-label">
-            BLIK
-         </label>
-      </div>
-      <div class="form-check">
-         <input class="form-check-input" type="radio" name="payment_method" value="platnosc przy odbiorze">
-         <label class="form-check-label">
-            Płatność przy odbiorze
-         </label>
-      </div>
-      <button type="submit" class="btn btn-dark mt-3">Płacę i zamawiam! </button>
-      <a href="orderhistory.php" class="btn btn-dark mt-3">Historia zamówień </a>
-      <?php
-      
-      ?>
-   </form>
    </div>
 
 

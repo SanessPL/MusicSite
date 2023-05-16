@@ -135,6 +135,9 @@ aria-label="Toggle navigation"
             $zap="SELECT ProductPhoto,ProductName, ProductPrize, ProductType, ProductAuthor, ProductDemo, ProductID FROM products where bestseller='yes'";
             $query = mysqli_query($con,$zap);
             while($row = mysqli_fetch_row($query)){
+               ?>
+            
+               <?php
                echo '<div class="col-md-6 col-lg-4 p-2 text-center">';
                echo '<div class="collection-img">';
                echo '<img src="../../Images/'.$row[0].'" alt="shopitems" class="w-50 h-auto" style="height:250px; width:auto; border:1px solid black;">';

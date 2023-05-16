@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 16 Kwi 2023, 19:35
+-- Czas generowania: 16 Maj 2023, 23:50
 -- Wersja serwera: 10.4.16-MariaDB
 -- Wersja PHP: 7.3.24
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `muzyczniepl`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `orders`
+--
+
+CREATE TABLE `orders` (
+  `OrderID` int(11) NOT NULL,
+  `UserID` int(11) NOT NULL,
+  `Products` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`Products`)),
+  `Payment` text COLLATE utf8_polish_ci DEFAULT NULL,
+  `OrderDate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------
 
@@ -47,7 +61,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductID`, `ProductName`, `ProductGenre`, `ProductRelease`, `ProductCountry`, `ProductType`, `ProductDemo`, `ProductPrize`, `ProductPhoto`, `ProductDiscography`, `ProductAuthor`, `bestseller`) VALUES
-(1, 'Gold Rush Kid', 'Pop', '2022', 'Wielka Brytania', 'MP3', 'pop/popgoldrushkid.mp3', '49.99', 'pop/popgoldrushkid.jpg', 'Album', 'George Ezra', 'no'),
+(1, 'Gold Rush Kid', 'Pop', '2022', 'Wielka Brytania', 'MP3', 'pop/popgoldrushkid.mp3', '49.99', 'pop/popgoldrushkid1.jpg', 'Album', 'George Ezra', 'no'),
 (2, 'Lost on you', 'Pop', '2016', 'Stany Zjednoczone', 'Winyl', 'pop/poplostonyou.mp3', '129.99', 'pop/poplostonyou.jpg', 'Album', 'LP', 'yes'),
 (3, 'Making Mirrors', 'Pop', '2011', 'Australia', 'CD', 'pop/popmakingmirrors.mp3', '69.99', 'pop/popmakingmirrors.jpg', 'Album', 'Gotye', 'no'),
 (4, 'Tribute', 'Pop', '2013', 'Wielka Brytania', 'CD', 'pop/poptribute.mp3', '74.99', 'pop/poptribute.jpg', 'Album', 'John Newman', 'no'),
@@ -68,14 +82,20 @@ INSERT INTO `products` (`ProductID`, `ProductName`, `ProductGenre`, `ProductRele
 
 CREATE TABLE `users` (
   `UserID` int(11) NOT NULL,
-  `UserLogin` varchar(30) COLLATE utf8_polish_ci DEFAULT NULL,
-  `UserEmail` varchar(50) COLLATE utf8_polish_ci DEFAULT NULL,
-  `UserPassword` varchar(100) COLLATE utf8_polish_ci DEFAULT NULL
+  `Username` varchar(50) COLLATE utf8_polish_ci DEFAULT NULL,
+  `Email` varchar(50) COLLATE utf8_polish_ci DEFAULT NULL,
+  `Password` varchar(100) COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indeksy dla tabeli `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`OrderID`);
 
 --
 -- Indeksy dla tabeli `products`
@@ -92,6 +112,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT dla zrzuconych tabel
 --
+
+--
+-- AUTO_INCREMENT dla tabeli `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `products`
